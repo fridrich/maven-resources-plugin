@@ -20,6 +20,7 @@ package org.apache.maven.plugins.resources;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.maven.api.Language;
 import org.apache.maven.api.ProjectScope;
@@ -70,7 +71,7 @@ public class TestResourcesMojo extends ResourcesMojo {
             resources = session.getService(ProjectManager.class)
                     .getEnabledSourceRoots(project, ProjectScope.TEST, Language.RESOURCES)
                     .map(ResourcesMojo::newResource)
-                    .toList();
+                    .collect(Collectors.toList());
         }
         super.doExecute();
     }

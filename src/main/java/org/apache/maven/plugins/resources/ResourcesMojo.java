@@ -26,6 +26,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import org.apache.maven.api.Language;
 import org.apache.maven.api.Project;
@@ -301,7 +302,7 @@ public class ResourcesMojo implements org.apache.maven.api.plugin.Mojo {
             resources = session.getService(ProjectManager.class)
                     .getEnabledSourceRoots(project, ProjectScope.MAIN, Language.RESOURCES)
                     .map(ResourcesMojo::newResource)
-                    .toList();
+                    .collect(Collectors.toList());
         }
         doExecute();
     }
